@@ -1,0 +1,141 @@
+---
+title: Lorem Ipsum Ipsum
+summary: Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati quasi vel temporibus aliquid recusandae tenetur in, aut iusto veritatis alias eaque! Deserunt sapiente facilis commodi maiores perspiciatis reiciendis? Natus, repellat!
+date: "2021-12-24"
+tags: ["react", "typescript"]
+---
+
+Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum
+consequat enim id excepteur consequat nostrud esse esse fugiat dolore.
+Reprehenderit occaecat exercitation non cupidatat in eiusmod laborum ex eu
+fugiat aute culpa pariatur. Irure elit proident consequat veniam minim ipsum ex
+pariatur.
+
+Mollit nisi cillum exercitation minim officia velit laborum non Lorem
+adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
+dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
+excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
+labore exercitation irure laborum.
+
+## Heading 2 is now working
+
+> Note: This post is also available in [Chinese](https://mp.weixin.qq.com/s?__biz=MzkxNDIzNTg4MA==&mid=2247485792&idx=1&sn=682a4dee7ce4d3b47a81baf9ebd7a98a&chksm=c170c1e7f60748f17585d6bfca0cff6edbf71bab95f0a4a1ea0bcf2d43c16d1722666d9fadc1&token=1766743281&lang=zh_CN#rd), [Portuguese](https://codigofonte.com.br/artigos/rust-e-o-futuro-da-infraestrutura-javascript), and [Arabic](https://www.tutomena.com/rust-and-javascript/).
+>
+> > The Witch
+
+```tsx:blog/[slug].tsx {4, 10}
+import type { NextPage, GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
+import { useMDXComponent } from 'next-contentlayer/hooks';
+import { allBlogs, type Blog } from 'contentlayer/generated';
+import { format, parseISO } from 'date-fns';
+import { MDXComponents } from 'ui/MDXComponents/MDXComponents';
+
+const PostLayout: NextPage<{ post: Blog }> = ({ post }) => {
+  const Component = useMDXComponent(post.body.code);
+
+  return (
+    <br>
+      <Head>
+        <title>{post.title}</title>
+      </Head>
+      <article className="mx-auto max-w-2xl py-16">
+        <div className="mb-6 text-center">
+          <Link href="/">
+            <a className="text-center text-sm font-bold uppercase text-blue-700">
+              Home
+            </a>
+          </Link>
+        </div>
+        <div className="mb-6 text-center">
+          <h1 className="mb-1 text-3xl font-bold">{post.title}</h1>
+          <time dateTime={post.date} className="text-sm text-gray-600">
+            {format(parseISO(post.date), 'LLLL d, yyyy')}
+          </time>
+        </div>
+        <Component components={{ ...MDXComponents }} />
+      </article>
+    </>
+  );
+};
+
+export default PostLayout;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = allBlogs.map((post: Blog) => post.url);
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const post = allBlogs.find(
+    (post: Blog) => post._raw.flattenedPath === `blog/${params?.slug}`
+  );
+
+  return {
+    props: {
+      post,
+    },
+  };
+};
+
+```
+
+### Heading 3 is also working
+
+Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum
+consequat enim id excepteur consequat nostrud esse esse fugiat dolore.<br/>
+Reprehenderit occaecat exercitation non cupidatat in eiusmod laborum ex eu
+fugiat aute culpa pariatur. Irure elit proident consequat veniam minim ipsum ex
+pariatur.
+
+Mollit nisi cillum exercitation minim officia velit laborum non Lorem
+adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
+dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
+excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
+labore exercitation irure laborum.
+
+#### Heading 4 is working
+
+Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum
+consequat enim id excepteur consequat nostrud esse esse fugiat dolore.
+Reprehenderit occaecat exercitation non cupidatat in eiusmod laborum ex eu
+fugiat aute culpa pariatur. Irure elit proident consequat veniam minim ipsum ex
+pariatur.
+
+Mollit nisi cillum exercitation minim officia velit laborum non Lorem
+adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
+dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
+excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
+labore exercitation irure laborum.
+
+adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
+dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
+excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
+labore exercitation irure laborum.
+
+Mollit nisi cillum exercitation minim officia velit laborum non Lorem
+adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
+dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
+excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
+labore exercitation irure laborum.
+
+adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
+dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
+excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
+labore exercitation irure laborum.
+
+Mollit nisi cillum exercitation minim officia velit laborum non Lorem
+adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
+dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
+excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
+labore exercitation irure laborum.
+
+adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
+dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
+excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
+labore exercitation irure laborum.

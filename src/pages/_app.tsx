@@ -1,8 +1,16 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from "next/app";
+import { ThemeProvider } from "next-themes";
+// import { AnimatePresence, motion } from "framer-motion";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <ThemeProvider attribute="data-theme">
+      {/* <AnimatePresence> */}
+      <Component {...pageProps} />
+      {/* </AnimatePresence> */}
+    </ThemeProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

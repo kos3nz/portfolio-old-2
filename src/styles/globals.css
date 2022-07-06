@@ -1,9 +1,33 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,300italic,regular,italic,700,700italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+@import url(./markdown.css);
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-#__next {
-  @apply h-full;
+@layer base {
+  /* Set screen size */
+  html,
+  body,
+  #__next {
+    @apply h-full;
+  }
+
+  /* Set font family */
+  html {
+    @apply scroll-smooth font-inter transition duration-300;
+  }
+
+  /* Custom scrollbar */
+  *::-webkit-scrollbar {
+    @apply h-1.5 w-1.5;
+  }
+  *::-webkit-scrollbar-track {
+  }
+
+  *::-webkit-scrollbar-thumb {
+    /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+    @apply rounded-xl bg-slate-400;
+  }
 }
