@@ -32,6 +32,15 @@ module.exports =
           60vw -18px 28px 0px ${twColors.violet[400]}
           `,
         },
+        animation: {
+          scaleY: 'scaleY 1.2s ease-in-out infinite var(--order)',
+        },
+        keyframes: {
+          scaleY: {
+            '0%, 60%, 100%': { transform: 'scaleY(0.1)' },
+            '30%': { transform: 'scaleY(1.0)' },
+          },
+        },
         typography: (theme) => ({
           DEFAULT: {
             css: {

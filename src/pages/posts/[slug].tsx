@@ -1,16 +1,17 @@
 import type { GetStaticPaths, NextPage } from "next";
 import { MDXRemote } from "next-mdx-remote";
 import { format, parseISO } from "date-fns";
+import mapKeys from "lodash.mapkeys";
 
 import Layout from "layouts/basic-layout";
 import SideNav from "layouts/side-nav";
 import Tag from "components/tag";
+import MDXComponents from "components/mdx-components";
 import { useHeadingRouteUpdates } from "hooks/useHeadingRoute";
 import { createMDXSource } from "utils/markdown";
 import { BrandColor } from "consts/brand-colors";
 
 import posts from "manifest/posts.json";
-import mapKeys from "lodash.mapkeys";
 
 const Post: NextPage<NextPageProps> = ({
   source,
@@ -50,7 +51,7 @@ const Post: NextPage<NextPageProps> = ({
             </div>
 
             {/* Content */}
-            <MDXRemote {...source} />
+            <MDXRemote {...source} components={MDXComponents} />
           </div>
         </article>
 
