@@ -14,7 +14,7 @@ const PostCard: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <div className="group mx-auto max-w-3xl rounded-sm p-4 duration-300 hover:bg-base-content/5">
-      <div className="flex items-center justify-between border-b border-base-content/30 pb-2">
+      <div className="flex items-center justify-between border-b border-base-content/30 pb-1">
         <div className="flex items-center gap-x-2 text-sm text-base-content/70">
           <dl className="flex gap-x-1">
             <dt className="">Posted on</dt>

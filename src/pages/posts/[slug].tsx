@@ -10,6 +10,7 @@ import { createMDXSource } from "utils/markdown";
 import { BrandColor } from "consts/brand-colors";
 
 import posts from "manifest/posts.json";
+import mapKeys from "lodash.mapkeys";
 
 const Post: NextPage<NextPageProps> = ({
   source,
@@ -29,13 +30,6 @@ const Post: NextPage<NextPageProps> = ({
             {/* Title */}
             <div className="not-prose mb-8 space-y-3">
               <div className="space-y-2 text-sm text-base-content/70">
-                <p>
-                  Posted on
-                  <time dateTime={date} className="ml-1">
-                    {format(parseISO(date), "yyyy /L /d")}
-                  </time>
-                </p>
-
                 <ol className="flex gap-x-3 lg:hidden">
                   {tags.map((tag) => (
                     <li key={tag}>
@@ -43,11 +37,16 @@ const Post: NextPage<NextPageProps> = ({
                     </li>
                   ))}
                 </ol>
+
+                <p>
+                  Posted on
+                  <time dateTime={date} className="ml-1">
+                    {format(parseISO(date), "yyyy /L /d")}
+                  </time>
+                </p>
               </div>
 
-              <h1 className="text-2xl font-bold text-base-content sm:text-3xl">
-                {title}
-              </h1>
+              <h1 className="text-3xl font-bold text-base-content">{title}</h1>
             </div>
 
             {/* Content */}
@@ -64,7 +63,7 @@ const Post: NextPage<NextPageProps> = ({
 export default Post;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = Object.values(posts).map(({ slug }) => ({
+  const paths = posts.map(({ slug }) => ({
     params: {
       slug,
     },
@@ -79,13 +78,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps = async ({
   params: { slug },
 }: GetStaticPropsParams) => {
-  const content = posts[slug];
+  const postMap = mapKeys(posts, (post) => {
+    return post.slug;
+  });
 
-  const mdxSource = await createMDXSource(content.source, content.frontMatter);
+  const post = postMap[slug];
+
+  const mdxSource = await createMDXSource(post.source, post.frontMatter);
 
   return {
     props: {
-      ...content,
+      ...post,
       source: mdxSource,
     },
   };
@@ -96,6 +99,6 @@ type NextPageProps = Awaited<ReturnType<typeof getStaticProps>>["props"];
 
 type GetStaticPropsParams = {
   params: {
-    slug: keyof typeof posts;
+    slug: string;
   };
 };

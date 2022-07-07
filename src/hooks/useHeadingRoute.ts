@@ -17,8 +17,9 @@ export const useActiveHash = () => {
   return activeHash;
 };
 
-export const updateActiveHash = (hash: string | undefined) =>
+export const updateActiveHash = (hash: string | undefined) => {
   subscribers.call(hash);
+};
 
 export const useHeadingRouteUpdates = (headingHashes: Array<string>) => {
   useEffect(

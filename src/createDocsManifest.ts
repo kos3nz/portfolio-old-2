@@ -1,13 +1,14 @@
 import { outputFileSync } from 'fs-extra';
 import { resolve } from 'path';
-import mapKeys from 'lodash.mapkeys';
+import { compareDesc } from 'date-fns';
+
 import { getFileNames, getSourceFromFile } from 'utils/server';
 import { parseContent } from 'utils/parse-content';
 
 export const createPostDocsManifest = () => {
   const fileNames = getFileNames(['src/data/posts']);
 
-  const parsedContents = fileNames.map((fileName) => {
+  const manifest = fileNames.map((fileName) => {
     const rawContent = getSourceFromFile([`src/data/posts/${fileName}`]);
 
     return parseContent(
@@ -17,14 +18,12 @@ export const createPostDocsManifest = () => {
         requiredMeta: ['title', 'date'],
       },
     );
+  },).sort((a, b) => {
+    return compareDesc(
+      new Date(a.frontMatter.date),
+      new Date(b.frontMatter.date),
+    );
   },);
-
-  const manifest = mapKeys(
-    parsedContents,
-    (content) => {
-      return content.slug;
-    },
-  );
 
   // Almost the same as writeFileSync, except that if the parent directory does not exist, it's created.
   outputFileSync(
