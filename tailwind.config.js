@@ -33,12 +33,12 @@ module.exports =
           `,
         },
         animation: {
-          scaleY: 'scaleY 1.2s ease-in-out infinite var(--order)',
+          scaleY: 'scaleY 1.2s ease-in-out infinite var(--delay)',
         },
         keyframes: {
           scaleY: {
             '0%, 60%, 100%': { transform: 'scaleY(0.1)' },
-            '30%': { transform: 'scaleY(1.0)' },
+            '30%': { transform: 'scaleY(1)' },
           },
         },
         typography: (theme) => ({
