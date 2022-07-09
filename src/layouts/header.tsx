@@ -12,7 +12,7 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "Posts", href: "/posts" },
   { name: "Projects", href: "/projects" },
-  { name: "Components", href: "/components" },
+  { name: "Components", href: "/components/ui/animation" },
   { name: "Snippets", href: "/snippets" },
 ] as const;
 
@@ -41,11 +41,13 @@ export const Header: React.FunctionComponent<{}> = ({}) => {
     <header
       className={clsx(
         `
-        fixed top-0 left-0 z-10 flex w-full justify-center bg-base-100 px-6 transition-all duration-300
-        [@supports(backdrop-filter:blur(0))]:bg-base-100/50
+        fixed top-0 left-0 z-10 flex w-full justify-center border-b bg-base-100 px-6 transition-all duration-300
+        [@supports(backdrop-filter:blur(0))]:bg-base-100/70
         [@supports(backdrop-filter:blur(0))]:backdrop-blur
         `,
-        mounted && !isPositionTop ? "h-[72px] shadow-gradient" : "h-[88px]"
+        mounted && !isPositionTop && activePath !== "/components"
+          ? "h-[72px] border-transparent shadow-gradient"
+          : "h-[88px] border-base-content/20"
       )}
     >
       <div className="relative flex w-full max-w-7xl items-center gap-x-12">

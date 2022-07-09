@@ -8,7 +8,7 @@ import posts from "manifest/posts.json";
 const Posts: NextPage<NextPageProps> = ({}) => {
   return (
     <Layout title="Posts">
-      <div className="mx-auto max-w-3xl px-6">
+      <div className="mx-auto max-w-3xl px-6 pt-12">
         <h1 className="mb-8 pl-4 text-4xl font-semibold text-base-content">
           All Posts
         </h1>

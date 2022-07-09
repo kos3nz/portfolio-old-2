@@ -31,3 +31,9 @@
     @apply rounded-xl bg-slate-400;
   }
 }
+
+@layer components {
+  .button-icon {
+    @apply relative rounded-lg bg-base-content/10 p-2 text-base-content/60 duration-200 hover:bg-base-content/20 hover:text-base-content focus:text-base-content focus:outline-none focus:ring-2 focus:ring-primary;
+  }
+}

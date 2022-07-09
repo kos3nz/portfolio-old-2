@@ -3,7 +3,7 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  trailingSlash: true,
+  // trailingSlash: true,
   webpack: (config, { dev, isServer }) => {
     // Replace React with Preact only in client production build
     // if (!dev && !isServer) {

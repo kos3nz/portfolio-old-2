@@ -1,10 +1,57 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import clsx from "clsx";
+
 import Tag from "components/tag";
-import { BrandColor } from "consts/brand-colors";
 import { useActiveHash } from "hooks/useHeadingRoute";
 import { useMounted } from "hooks/useMounted";
+import { BrandColor } from "consts/brand-colors";
+import { ComponentRoutes } from "types/component";
 
-const SecondaryNav: React.FunctionComponent<{
+export const ComponentsNav: React.FunctionComponent<{
+  categories: ComponentRoutes;
+}> = ({ categories }) => {
+  const { asPath } = useRouter();
+
+  return (
+    <div className="fixed hidden h-full w-64 overflow-y-auto border-r border-base-content/10 bg-base-200/20 px-6 py-10 lg:block">
+      <nav>
+        {categories.map((category) => (
+          <div
+            key={category.name}
+            className="mb-4 divide-y divide-base-content/40 last-of-type:mb-0"
+          >
+            <h5 className="pb-2 font-bold capitalize text-base-content">
+              {category.name}
+            </h5>
+            <ul className="pt-2">
+              {category.routes.map((slug) => {
+                return (
+                  <li key={slug.name} className="py-2 pl-3 first-of-type:mt-0">
+                    <Link href={slug.path}>
+                      <a
+                        className={clsx(
+                          "flex items-center gap-x-2 text-sm capitalize duration-200",
+                          slug.path === asPath
+                            ? "text-primary"
+                            : "text-base-content/50 hover:text-base-content"
+                        )}
+                      >
+                        <span className="font-semibold">{slug.name}</span>
+                      </a>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </nav>
+    </div>
+  );
+};
+
+const PostNav: React.FunctionComponent<{
   tableOfContents: { hash: string; level: number; text: string }[];
   tags?: string[];
 }> = ({ tableOfContents, tags }) => {
@@ -70,7 +117,8 @@ const SecondaryNav: React.FunctionComponent<{
 };
 
 const SideNav = {
-  SecondaryNav,
+  ComponentsNav,
+  PostNav,
 };
 
 export default SideNav;

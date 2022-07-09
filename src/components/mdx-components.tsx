@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import Image, { type ImageProps as NextImageProps } from "next/image";
 import clsx from "clsx";
+import CopyToClipboard from "./button/copy-to-clipboard";
+import { useCopyToClipboard } from "hooks/useCopyToClipboard";
 
 const CustomLink: React.FunctionComponent<
   React.ComponentPropsWithoutRef<"a">
@@ -120,56 +122,18 @@ export const RenderSmoothImage: React.FunctionComponent<
 const CodeBlockWithCopyToClipboard: React.FunctionComponent<
   React.ComponentPropsWithoutRef<"pre">
 > = (props) => {
-  const sourceRef = useRef<HTMLPreElement>(null);
-  const [copied, setCopied] = useState(false);
-
-  const onCopy = () => {
-    setCopied(true);
-    if (sourceRef.current?.textContent) {
-      navigator.clipboard.writeText(sourceRef.current.textContent);
-    }
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
-  };
+  const { ref, copied, onCopy } = useCopyToClipboard();
 
   return (
     <div className="group relative">
       <div className="absolute top-3 right-3 flex flex-col items-center opacity-0 duration-300 focus:opacity-100 group-hover:opacity-100">
-        <button
-          className="relative rounded-lg bg-slate-700 p-1.5 text-slate-400 duration-200 hover:bg-slate-700/50 hover:text-slate-200 focus:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary"
-          aria-label="Copy to clipboard"
-          title="Copy to clipboard"
-          onClick={onCopy}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-5 w-5"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
-            <rect x="9" y="3" width="6" height="4" rx="2"></rect>
-            <path d="M9 12h6"></path>
-            <path d="M9 16h6"></path>
-          </svg>
-
-          <span
-            className={clsx(
-              "absolute -right-3 -top-9 rounded-lg border border-slate-500 bg-slate-700 px-2 py-1 text-xs font-semibold text-slate-300 duration-200",
-              copied ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
-            )}
-          >
-            Copied!
-          </span>
-        </button>
+        <CopyToClipboard
+          copied={copied}
+          onCopy={onCopy}
+          className="relative rounded-lg bg-slate-700 p-2 text-slate-400 duration-200 hover:bg-slate-700/50 hover:text-slate-200 focus:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary"
+        />
       </div>
-      <pre ref={sourceRef} {...props}>
+      <pre ref={ref} {...props}>
         {props.children}
       </pre>
     </div>
