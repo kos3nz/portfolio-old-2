@@ -25,7 +25,7 @@ const Post: NextPage<NextPageProps> = ({
 
   return (
     <Layout title={title}>
-      <div className="px-4 pt-12 xs:px-6 lg:flex lg:justify-center lg:gap-x-8">
+      <div className="px-4 py-12 xs:px-6 lg:flex lg:justify-center lg:gap-x-8">
         <article>
           <div className="prose mx-auto max-w-2xl text-base-content/90 prose-headings:text-base-content prose-a:text-accent prose-blockquote:text-base-content/70">
             {/* Title */}

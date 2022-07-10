@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 
-import PostCard from "components/post-card";
+import PostCard from "components/cards/post-card";
 import Layout from "layouts/basic-layout";
 
 import posts from "manifest/posts.json";
@@ -8,7 +8,7 @@ import posts from "manifest/posts.json";
 const Posts: NextPage<NextPageProps> = ({}) => {
   return (
     <Layout title="Posts">
-      <div className="mx-auto max-w-3xl px-6 pt-12">
+      <div className="mx-auto max-w-3xl px-6 py-12">
         <h1 className="mb-8 pl-4 text-4xl font-semibold text-base-content">
           All Posts
         </h1>

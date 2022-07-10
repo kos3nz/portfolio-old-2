@@ -13,7 +13,7 @@ const Sidebar: React.FunctionComponent<{
     routes: {
       name: string;
       path: string;
-      icon?: (props: React.ComponentProps<"svg">) => JSX.Element | JSX.Element;
+      icon?: (props: React.ComponentProps<"svg">) => JSX.Element;
     }[];
   }[];
 }> = (
@@ -24,7 +24,7 @@ const Sidebar: React.FunctionComponent<{
   const { asPath } = useRouter();
 
   return (
-    <div className="sticky top-0 left-0 h-full w-64 overflow-y-auto border-r bg-slate-100 px-6 py-10 dark:border-slate-700 dark:bg-slate-800 lg:block">
+    <div className="sticky top-0 left-0 h-full w-64 overflow-y-auto border-r bg-slate-100 px-6 py-12 dark:border-slate-700 dark:bg-slate-800 lg:block">
       <nav>
         {categories.map((category) => (
           <div
@@ -34,19 +34,19 @@ const Sidebar: React.FunctionComponent<{
             <h5 className="pb-1 font-bold capitalize text-slate-600 dark:text-slate-300">
               {category.title}
             </h5>
-            <ul className="pt-2">
+            <ul className="space-y-2 pt-3">
               {category.routes.map((route) => {
                 const Icon = route.icon;
 
                 return (
-                  <li key={route.name} className="py-1 pl-1 first-of-type:mt-0">
+                  <li key={route.name} className="pl-1">
                     <Link href={route.path}>
                       <a
                         className={clsx(
-                          "flex items-center gap-x-2 rounded-lg py-1 px-2 text-sm capitalize duration-200",
+                          "flex items-center gap-x-2 rounded-lg py-2 px-2 text-sm capitalize duration-200",
                           route.path === asPath
                             ? "text-blue-500"
-                            : "text-slate-700 hover:bg-slate-700/10 dark:text-slate-400 dark:hover:text-slate-200"
+                            : "text-slate-700 hover:bg-slate-700/10 dark:text-slate-400 dark:hover:bg-slate-300/10 dark:hover:text-slate-200"
                         )}
                       >
                         {Icon && <Icon className="h-5 w-5" />}

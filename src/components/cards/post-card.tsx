@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { format, parseISO } from "date-fns";
 
-import Tag from "./tag";
+import Tag from "components/tag";
 
 import { BrandColor } from "consts/brand-colors";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
-import CopyToClipboard from "components/button/copy-to-clipboard";
+import CopyToClipboard from "components/buttons/copy-to-clipboard";
 import { useCopyToClipboard } from "hooks/useCopyToClipboard";
 
 import type { ComponentTemplate } from "types/component";

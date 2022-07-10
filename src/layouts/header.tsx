@@ -51,7 +51,7 @@ export const Header: React.FunctionComponent<{}> = ({}) => {
       )}
     >
       <div className="relative flex w-full max-w-7xl items-center gap-x-12">
-        <div className="absolute z-10 flex h-full w-full items-center justify-center lg:relative lg:w-auto">
+        <div className="absolute left-[50%] z-10 w-auto -translate-x-[50%] lg:relative lg:left-0 lg:translate-x-0">
           {/* Logo */}
           <Link href="/">
             <a>

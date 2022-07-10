@@ -32,7 +32,7 @@ const Header: React.FunctionComponent<{}> = ({}) => {
       "
     >
       <div className="relative flex w-full max-w-7xl items-center gap-10">
-        <div className="absolute z-10 flex h-full w-full items-center justify-center lg:relative lg:w-auto">
+        <div className="absolute left-[50%] z-10 w-auto -translate-x-[50%] lg:relative lg:left-0 lg:translate-x-0">
           {/* Logo */}
           <a href="#">
             <span className="font-bold text-slate-700 dark:text-slate-200 ">
@@ -50,7 +50,7 @@ const Header: React.FunctionComponent<{}> = ({}) => {
                   <Link href={item.href}>
                     <a
                       className={clsx(
-                        "font-regular capitalize duration-200",
+                        "font-semibold capitalize duration-200",
                         item.href === activePath
                           ? "text-cyan-600 dark:text-cyan-400"
                           : "text-slate-800 hover:text-cyan-600 dark:text-slate-100 dark:hover:text-cyan-400"

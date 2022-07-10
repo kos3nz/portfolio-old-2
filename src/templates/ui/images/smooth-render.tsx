@@ -16,10 +16,10 @@ import { useEffect, useRef, useState } from "react";
 
 const RenderSmoothImage: React.FunctionComponent<
   React.ComponentPropsWithoutRef<"img"> & {
-    loader?: JSX.Element | React.FunctionComponent<any>;
+    Loader?: React.FunctionComponent<any>;
   }
 > = ({
-  // src, alt ,hasLoader,
+  // src, alt, Loader,
   ...props
 }) => {
   const [loaded, setLoaded] = useState(false);
@@ -39,9 +39,9 @@ const RenderSmoothImage: React.FunctionComponent<
   }, [ref.current?.complete]);
 
   return (
-    <div className="relative aspect-square max-w-xs overflow-hidden rounded-lg">
+    <div className="relative w-full max-w-xs overflow-hidden rounded-lg">
       <div className="absolute inset-0 flex items-center justify-center bg-slate-300 dark:bg-slate-700">
-        {!loaded && loader}
+        {!loaded && <Loader />}
       </div>
       <img
         ref={ref}
@@ -64,7 +64,7 @@ export default RenderSmoothImage;
 const src =
   "https://images.unsplash.com/photo-1648071218468-48852c43e004?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80";
 const alt = "image";
-const loader = (
+const Loader = () => (
   <div className="flex items-center gap-1">
     {[
       "bg-teal-400",
@@ -88,19 +88,50 @@ const loader = (
 );
 
 /* Note
-  - If you are using next/image component, replace img element with the following code:
-    <Image
-      src={src}
-      alt={alt}
-      className="relative aspect-square object-cover duration-500"
-      style={{
-        opacity: loaded ? 1 : 0
-      }}
-      onLoadingComplete={loadComplete}
-      loading="lazy"
-      layout="responsive"
-      height={1}
-      width={1}
-      {...props}
-    />
+  - If you are using nextjs, replace with the following code:
+  import { useState } from "react";
+  import NextImage, { type ImageProps as NextImageProps } from "next/image";
+
+  const Image: React.FunctionComponent<
+    NextImageProps & {
+      Loader?: React.FunctionComponent<any>;
+    }
+  > = ({
+      src,
+      alt,
+      layout = 'responsive',
+      height = 1,
+      width = 1,
+      Loader,
+      ...props
+  }) => {
+    const [loaded, setLoaded] = useState(false);
+
+    const loadComplete = () => {
+      setLoaded(true);
+    };
+
+    return (
+      <div className="relative max-w-xs overflow-hidden rounded-lg">
+        <div className="absolute inset-0 flex items-center justify-center bg-slate-300 dark:bg-slate-700">
+          {Loader && <Loader />}
+        </div>
+        <NextImage
+          src={src}
+          alt={alt}
+          className="relative object-cover duration-500"
+          style={{
+            opacity: loaded ? 1 : 0,
+          }}
+          onLoadingComplete={loadComplete}
+          layout={layout}
+          height={width}
+          width={height}
+          {...props}
+        />
+      </div>
+    );
+  };
+
+  export default Image;
 */
