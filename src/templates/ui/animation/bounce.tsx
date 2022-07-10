@@ -4,7 +4,7 @@
 
 import { motion, Variants } from "framer-motion";
 
-const Bounce: React.FunctionComponent<{ test: string }> = ({ test }) => {
+const Bounce: React.FunctionComponent<{}> = ({}) => {
   return (
     <motion.div
       className="flex items-center gap-1"
@@ -24,7 +24,6 @@ const Bounce: React.FunctionComponent<{ test: string }> = ({ test }) => {
         className="inline-flex h-2 w-2 rounded-full bg-green-400"
         variants={child}
       />
-      <p>{test}</p>
     </motion.div>
   );
 };

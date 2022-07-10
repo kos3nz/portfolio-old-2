@@ -16,7 +16,7 @@
 
   /* Set font family */
   html {
-    @apply scroll-smooth font-inter transition duration-300;
+    @apply font-inter transition duration-300;
   }
 
   /* Custom scrollbar */

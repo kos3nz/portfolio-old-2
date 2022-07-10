@@ -7,8 +7,9 @@ import {
 export type ComponentTemplate = {
   fileName: string;
   title: string;
-  style?: React.CSSProperties;
-  className?: string;
+  wrapperStyle?: React.CSSProperties;
+  wrapperClassName?: string;
+  notCentered?: boolean;
   Component: React.ComponentType<any>;
   ComponentProps?: any;
 };

@@ -18,28 +18,12 @@ const Component: NextPage<NextPageProps> = ({
 }) => {
   const templates = allTemplates[category][slug];
 
+  if (!templates) throw Error("Could not find the components");
+
   return (
     <Layout noFooter>
       <div className="relative">
-        <SideNav.ComponentsNav
-          categories={[
-            {
-              name: "UI",
-              routes: [
-                { name: "animation", path: "/components/ui/animation" },
-                { name: "avatar", path: "/components/ui/avatar" },
-                { name: "button", path: "/components/ui/button" },
-              ],
-            },
-            {
-              name: "navigation",
-              routes: [
-                { name: "breadcrumbs", path: "/components/ui/breadcrumbs" },
-                { name: "header", path: "/components/ui/header" },
-              ],
-            },
-          ]}
-        />
+        <SideNav.ComponentsNav categories={routes} />
         <div className="py-10 px-6 lg:ml-64 lg:px-10">
           <h1 className="mb-8 text-3xl font-bold capitalize">{slug}</h1>
           <div className="space-y-12">

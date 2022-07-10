@@ -18,12 +18,13 @@ const Preview: React.FunctionComponent<{
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { copied, onCopy } = useCopyToClipboard(code);
 
-  const Component = component.Component;
+  const { title, Component, wrapperClassName, wrapperStyle, notCentered } =
+    component;
 
   return (
     <div className="divide-y divide-base-content/30">
       {/* Title */}
-      <h2 className="pb-2 text-lg text-base-content">Title</h2>
+      <h2 className="pb-2 text-lg text-base-content">{title}</h2>
 
       <div className="pt-4">
         <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
@@ -140,8 +141,10 @@ const Preview: React.FunctionComponent<{
                   <div
                     className={clsx(
                       "relative min-h-[200px] overflow-hidden rounded-md bg-slate-100 dark:bg-slate-800",
-                      undefined ?? "flex items-center justify-center"
+                      !notCentered && "flex items-center justify-center p-10",
+                      wrapperClassName
                     )}
+                    style={wrapperStyle}
                   >
                     <Component />
                   </div>
@@ -160,34 +163,3 @@ const Preview: React.FunctionComponent<{
 };
 
 export default Preview;
-
-const categories = [
-  {
-    title: "UI",
-    links: [
-      {
-        name: "animation",
-        path: "/components/ui/animation",
-      },
-      { name: "avatar", path: "/components/ui/avatar" },
-      { name: "button", path: "/components/ui/button" },
-
-      {
-        name: "animation",
-        path: "/components/ui/animation",
-      },
-      { name: "avatar", path: "/components/ui/avatar" },
-      { name: "button", path: "/components/ui/button" },
-    ],
-  },
-  {
-    title: "navigation",
-    links: [
-      {
-        name: "breadcrumbs",
-        path: "/components/ui/breadcrumbs",
-      },
-      { name: "header", path: "/components/ui/header" },
-    ],
-  },
-];
