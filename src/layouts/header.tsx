@@ -30,6 +30,8 @@ export const Header: React.FunctionComponent<{}> = ({}) => {
   const isPositionTop = useScrollTop(10, !asPath.includes("#"));
 
   useEffect(() => {
+    console.log(activePath);
+
     if (asPath.includes("/posts")) setActivePath("/posts");
     else if (asPath.includes("/projects")) setActivePath("/projects");
     else if (asPath.includes("/components")) setActivePath("/components");

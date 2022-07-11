@@ -54,7 +54,7 @@ const MDXComponents = {
   pre: CodeBlockWithCopyToClipboard,
   Image: (props: NextImageProps) => (
     <div className="w-full max-w-2xl overflow-hidden rounded-lg">
-      <MDXImage Loader={Loader} {...props} />
+      <MDXImage Loader={<Loader />} {...props} />
     </div>
   ),
 };

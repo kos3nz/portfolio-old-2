@@ -11,7 +11,7 @@ const ProjectCard: React.FunctionComponent<{
   };
 }> = ({ project }) => (
   <Link href={project.path}>
-    <a className="group w-full max-w-sm">
+    <a className="group w-full max-w-sm outline-none">
       <div className="overflow-hidden">
         <div className="duration-300 group-hover:opacity-80">
           <Image
@@ -19,7 +19,7 @@ const ProjectCard: React.FunctionComponent<{
             alt={project.title}
             height={9}
             width={16}
-            Loader={Loader}
+            Loader={<Loader />}
           />
         </div>
       </div>
@@ -54,7 +54,7 @@ const ProjectCard: React.FunctionComponent<{
           </button>
         </div>
       </div>
-      <span className="-mt-[2px] block h-[2px] w-full scale-x-0 bg-primary duration-300 group-hover:scale-x-100" />
+      <span className="-mt-[2px] block h-[2px] w-full scale-x-0 bg-primary duration-300 group-hover:scale-x-100 group-focus:scale-x-100" />
     </a>
   </Link>
 );

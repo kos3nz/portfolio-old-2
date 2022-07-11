@@ -16,7 +16,7 @@ import { useEffect, useRef, useState } from "react";
 
 const RenderSmoothImage: React.FunctionComponent<
   React.ComponentPropsWithoutRef<"img"> & {
-    Loader?: React.FunctionComponent<any>;
+    Loader?: JSX.Element;
   }
 > = ({
   // src, alt, Loader,
@@ -41,7 +41,7 @@ const RenderSmoothImage: React.FunctionComponent<
   return (
     <div className="relative w-full max-w-xs overflow-hidden rounded-lg">
       <div className="absolute inset-0 flex items-center justify-center bg-slate-300 dark:bg-slate-700">
-        {!loaded && <Loader />}
+        {!loaded && Loader}
       </div>
       <img
         ref={ref}
@@ -64,7 +64,7 @@ export default RenderSmoothImage;
 const src =
   "https://images.unsplash.com/photo-1648071218468-48852c43e004?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80";
 const alt = "image";
-const Loader = () => (
+const Loader = (
   <div className="flex items-center gap-1">
     {[
       "bg-teal-400",
@@ -94,7 +94,7 @@ const Loader = () => (
 
   const Image: React.FunctionComponent<
     NextImageProps & {
-      Loader?: React.FunctionComponent<any>;
+      Loader?: JSX.Element
     }
   > = ({
       src,
@@ -114,7 +114,7 @@ const Loader = () => (
     return (
       <div className="relative max-w-xs overflow-hidden rounded-lg">
         <div className="absolute inset-0 flex items-center justify-center bg-slate-300 dark:bg-slate-700">
-          {Loader && <Loader />}
+          {!loaded && Loader}
         </div>
         <NextImage
           src={src}

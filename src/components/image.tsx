@@ -3,7 +3,7 @@ import NextImage, { type ImageProps as NextImageProps } from "next/image";
 
 const Image: React.FunctionComponent<
   NextImageProps & {
-    Loader?: React.FunctionComponent<any>;
+    Loader?: JSX.Element;
   }
 > = ({
   src,
@@ -22,8 +22,8 @@ const Image: React.FunctionComponent<
 
   return (
     <div className="relative w-full">
-      <div className="absolute inset-0 flex items-center justify-center bg-base-content/30">
-        {Loader && <Loader />}
+      <div className="absolute inset-0 flex items-center justify-center bg-base-content/20">
+        {!loaded && Loader}
       </div>
       <NextImage
         src={src}
