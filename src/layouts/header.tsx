@@ -8,13 +8,16 @@ import { useScrollTop } from "hooks/useScrollTop";
 import { useMounted } from "hooks/useMounted";
 
 // Navigation
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Posts", href: "/posts" },
-  { name: "Projects", href: "/projects" },
-  { name: "Components", href: "/components/ui/animation" },
-  { name: "Snippets", href: "/snippets" },
-] as const;
+const navigation = {
+  home: { name: "Home", href: "/" },
+  posts: { name: "Posts", href: "/posts" },
+  projects: { name: "Projects", href: "/projects" },
+  components: {
+    name: "Components",
+    href: "/components/navigation/breadcrumbs",
+  },
+  snippets: { name: "Snippets", href: "/snippets" },
+} as const;
 
 export const Header: React.FunctionComponent<{}> = ({}) => {
   const { asPath } = useRouter();
@@ -23,20 +26,21 @@ export const Header: React.FunctionComponent<{}> = ({}) => {
   // After mounting, we have access to the theme
   const mounted = useMounted();
 
-  const [activePath, setActivePath] = useState("");
+  const [activePath, setActivePath] = useState<NavPaths>();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [angle, setAngle] = useState(resolvedTheme === "dark" ? 180 : 0);
 
   const isPositionTop = useScrollTop(10, !asPath.includes("#"));
 
   useEffect(() => {
-    console.log(activePath);
-
-    if (asPath.includes("/posts")) setActivePath("/posts");
-    else if (asPath.includes("/projects")) setActivePath("/projects");
-    else if (asPath.includes("/components")) setActivePath("/components");
-    else if (asPath.includes("/snippets")) setActivePath("/snippets");
-    else setActivePath(asPath);
+    if (asPath.includes("/posts")) setActivePath(navigation.posts.href);
+    else if (asPath.includes("/projects"))
+      setActivePath(navigation.projects.href);
+    else if (asPath.includes("/components"))
+      setActivePath(navigation.components.href);
+    else if (asPath.includes("/snippets"))
+      setActivePath(navigation.snippets.href);
+    else setActivePath("/");
   }, [asPath]);
 
   return (
@@ -47,7 +51,7 @@ export const Header: React.FunctionComponent<{}> = ({}) => {
         [@supports(backdrop-filter:blur(0))]:bg-base-100/70
         [@supports(backdrop-filter:blur(0))]:backdrop-blur
         `,
-        mounted && !isPositionTop && activePath !== "/components"
+        mounted && !isPositionTop && activePath !== navigation.components.href
           ? "h-[72px] border-transparent shadow-gradient"
           : "h-[88px] border-base-content/20"
       )}
@@ -77,7 +81,7 @@ export const Header: React.FunctionComponent<{}> = ({}) => {
         {/* Navigation */}
         <nav className="relative flex flex-1 items-center">
           <ol className="hidden items-center gap-x-6 lg:flex">
-            {navigation.map((item) => (
+            {Object.values(navigation).map((item) => (
               <li key={item.name} className="text-sm font-bold uppercase">
                 <Link href={item.href}>
                   <a
@@ -191,4 +195,6 @@ export const Header: React.FunctionComponent<{}> = ({}) => {
 };
 
 // Types
-export type NavPaths = typeof navigation[number]["href"];
+export type NavPaths = {
+  href: typeof navigation[keyof typeof navigation]["href"];
+}["href"];
