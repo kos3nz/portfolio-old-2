@@ -1,20 +1,17 @@
-import { serialize } from 'next-mdx-remote/serialize';
+import { bundleMDX } from 'mdx-bundler';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeCodeTitles from 'rehype-code-titles';
 import rehypePrism from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
-export const createMDXSource = async (
-  source: string,
-  data?: Record<string, unknown>,
-) => {
-  const mdxSource = await serialize(
+export const createMDXSource = async (source: string) => {
+  const mdxSource = await bundleMDX({
     source,
-    {
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [
+    mdxOptions: (options) => {
+      options.remarkPlugins = [remarkGfm];
+      options.rehypePlugins =
+        [
           rehypeCodeTitles, // Code blocksにタイトルを付与
           rehypePrism,
           rehypeSlug, // Headingsにid attributeを追加
@@ -45,12 +42,11 @@ export const createMDXSource = async (
               },
             },
           ],
-        ],
-        format: 'mdx',
-      },
-      scope: data,
+        ];
+
+      return options;
     },
-  );
+  },);
 
   return mdxSource;
 };

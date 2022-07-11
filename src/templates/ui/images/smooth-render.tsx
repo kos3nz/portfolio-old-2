@@ -52,6 +52,12 @@ const RenderSmoothImage: React.FunctionComponent<
           opacity: loaded ? 1 : 0,
         }}
         onLoad={loadComplete}
+        onError={() => {
+          if (ref.current) {
+            ref.current.onerror = null; // to prevent infinite loop if the fallback image is not found
+            // ref.current.src = '/your-fallback.png';
+          }
+        }}
         {...props}
       />
     </div>

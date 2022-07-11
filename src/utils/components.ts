@@ -1,4 +1,3 @@
-import { serialize } from 'next-mdx-remote/serialize';
 import rehypePrism from 'rehype-prism-plus';
 import mapKeys from 'lodash.mapkeys';
 
@@ -66,6 +65,8 @@ export const getAllComponentRoutes = () => {
   return routes;
 };
 
+import { bundleMDX } from 'mdx-bundler';
+
 export const getComponentSources = async (category: string, slug: string) => {
   const files = getComponentFiles(category, slug);
 
@@ -73,21 +74,19 @@ export const getComponentSources = async (category: string, slug: string) => {
     files.map(async (file) => {
       const source = getSourceFromFile([rootDir, category, slug, file]);
 
-      const code = '```tsx\n' + source + '\n```';
+      const mdxSource = '```tsx\n' + source + '\n```';
 
-      const mdxSource = await serialize(
-        code,
-        {
-          mdxOptions: {
-            rehypePlugins: [rehypePrism],
-            format: 'mdx',
-          },
+      const { code } = await bundleMDX({
+        source: mdxSource,
+        mdxOptions: (options) => {
+          options.rehypePlugins =
+            [...(options?.rehypePlugins ?? []), rehypePrism];
+          return options;
         },
-      );
-
+      },);
       return {
         fileName: file,
-        mdx: mdxSource.compiledSource,
+        mdx: code,
         raw: source,
       };
     },),

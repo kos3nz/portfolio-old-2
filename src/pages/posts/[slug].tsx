@@ -1,5 +1,6 @@
+import { useMemo } from "react";
 import type { GetStaticPaths, NextPage } from "next";
-import { MDXRemote } from "next-mdx-remote";
+import { getMDXComponent } from "mdx-bundler/client";
 import { format, parseISO } from "date-fns";
 import mapKeys from "lodash.mapkeys";
 
@@ -14,12 +15,13 @@ import { BrandColor } from "consts/brand-colors";
 import posts from "manifest/posts.json";
 
 const Post: NextPage<NextPageProps> = ({
-  source,
+  code,
   frontMatter,
   tableOfContents,
   hashes,
 }) => {
   const { title, date, tags } = frontMatter;
+  const MDXComponent = useMemo(() => getMDXComponent(code), [code]);
 
   useHeadingRouteUpdates(hashes);
 
@@ -51,7 +53,7 @@ const Post: NextPage<NextPageProps> = ({
             </div>
 
             {/* Content */}
-            <MDXRemote {...source} components={MDXComponents} />
+            <MDXComponent components={MDXComponents} />
           </div>
         </article>
 
@@ -85,12 +87,12 @@ export const getStaticProps = async ({
 
   const post = postMap[slug];
 
-  const mdxSource = await createMDXSource(post.source, post.frontMatter);
+  const { code } = await createMDXSource(post.source);
 
   return {
     props: {
       ...post,
-      source: mdxSource,
+      code,
     },
   };
 };

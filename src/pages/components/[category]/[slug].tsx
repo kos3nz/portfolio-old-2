@@ -32,10 +32,10 @@ const Component: NextPage<NextPageProps> = ({
 
               return (
                 <Preview
-                  key={template.title}
+                  key={template.fileName}
                   component={template}
-                  source={source.mdx}
-                  code={source.raw}
+                  code={source.mdx}
+                  source={source.raw}
                 />
               );
             })}
@@ -61,7 +61,14 @@ export const getStaticProps = async ({
   params: { category, slug },
 }: ComponentParams) => {
   const routes = getAllComponentRoutes();
+
+  const p1 = performance.now();
+
   const sources = await getComponentSources(category, slug);
+
+  const p2 = performance.now();
+
+  console.log("takes: " + (p2 - p1) + "ms");
 
   return {
     props: {

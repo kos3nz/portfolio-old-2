@@ -1,22 +1,23 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { getMDXComponent } from "mdx-bundler/client";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
+
 import CopyToClipboard from "components/buttons/copy-to-clipboard";
 import { useCopyToClipboard } from "hooks/useCopyToClipboard";
-
 import type { ComponentTemplate } from "types/component";
-import { MDXRemote } from "next-mdx-remote";
 
 const tabs = ["preview", "code"];
 
 const Preview: React.FunctionComponent<{
   component: ComponentTemplate;
-  source: string;
   code: string;
+  source: string;
 }> = ({ component, source, code }) => {
   const [previewTheme, setPreviewTheme] = useState<"light" | "dark">("dark");
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const { copied, onCopy } = useCopyToClipboard(code);
+  const { copied, onCopy } = useCopyToClipboard(source);
+  const MDXComponent = useMemo(() => getMDXComponent(code), [code]);
 
   const { title, Component, wrapperClassName, wrapperStyle, notCentered } =
     component;
@@ -150,7 +151,7 @@ const Preview: React.FunctionComponent<{
                   </div>
                 ) : (
                   <div className="overflow-hidden rounded-md bg-slate-800">
-                    <MDXRemote compiledSource={source} />
+                    <MDXComponent />
                   </div>
                 )}
               </Tab.Panel>
