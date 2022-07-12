@@ -19,7 +19,7 @@ const Preview: React.FunctionComponent<{
   const { copied, onCopy } = useCopyToClipboard(source);
   const MDXComponent = useMemo(() => getMDXComponent(code), [code]);
 
-  const { title, Component, wrapperClassName, wrapperStyle, notCentered } =
+  const { title, Component, containerClassName, containerStyle, notCentered } =
     component;
 
   return (
@@ -143,14 +143,14 @@ const Preview: React.FunctionComponent<{
                     className={clsx(
                       "relative min-h-[200px] overflow-hidden rounded-md bg-slate-100 dark:bg-slate-800",
                       !notCentered && "flex items-center justify-center p-10",
-                      wrapperClassName
+                      containerClassName
                     )}
-                    style={wrapperStyle}
+                    style={containerStyle}
                   >
                     <Component />
                   </div>
                 ) : (
-                  <div className="overflow-hidden rounded-md bg-slate-800">
+                  <div className="max-h-[640px] overflow-y-scroll rounded-md bg-slate-800">
                     <MDXComponent />
                   </div>
                 )}

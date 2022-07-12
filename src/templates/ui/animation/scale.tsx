@@ -32,8 +32,8 @@ const Scale: React.FunctionComponent<{}> = ({}) => (
         .fill(1)
         .map((_, i) => (
           <rect
-            key={`bar-${i}`}
-            id="bar"
+            key={`bar-${i + 1}`}
+            id={`bar-${i + 1}`}
             x={i * 8}
             width="4"
             height="44"

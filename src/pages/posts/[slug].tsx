@@ -85,14 +85,16 @@ export const getStaticProps = async ({
     return post.slug;
   });
 
-  const post = postMap[slug];
+  const { source, frontMatter, tableOfContents, hashes } = postMap[slug];
 
-  const { code } = await createMDXSource(post.source);
+  const { code } = await createMDXSource(source);
 
   return {
     props: {
-      ...post,
       code,
+      frontMatter,
+      tableOfContents,
+      hashes,
     },
   };
 };

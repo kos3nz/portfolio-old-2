@@ -62,13 +62,7 @@ export const getStaticProps = async ({
 }: ComponentParams) => {
   const routes = getAllComponentRoutes();
 
-  const p1 = performance.now();
-
   const sources = await getComponentSources(category, slug);
-
-  const p2 = performance.now();
-
-  console.log("takes: " + (p2 - p1) + "ms");
 
   return {
     props: {

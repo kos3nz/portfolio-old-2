@@ -1,12 +1,14 @@
 /** Dependencies
- * "next": "12.1.6",
+ * "next": "12.2.2",
  * "clsx": "^1.1.1",
+ * "@heroicons/react": "^1.0.6",
  */
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import clsx from "clsx";
+import { SearchIcon, ShoppingCartIcon } from "@heroicons/react/outline";
 
 const Header: React.FunctionComponent<{}> = ({}) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -95,44 +97,13 @@ const Header: React.FunctionComponent<{}> = ({}) => {
           {/* CTA section */}
           <div className="flex items-center gap-x-4">
             <button className="rounded-lg p-0.5 text-slate-700 duration-200 hover:ring-2 hover:ring-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:text-slate-200">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <circle cx="10" cy="10" r="7"></circle>
-                <line x1="21" y1="21" x2="15" y2="15"></line>
-              </svg>
+              <SearchIcon className="h-6 w-6" />
             </button>
             <a
               href="#"
               className="rounded-lg p-0.5 text-slate-700 duration-200 hover:ring-2 hover:ring-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:text-slate-200"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-shopping-cart"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <circle cx="6" cy="19" r="2"></circle>
-                <circle cx="17" cy="19" r="2"></circle>
-                <path d="M17 17h-11v-14h-2"></path>
-                <path d="M6 5l14 1l-1 7h-13"></path>
-              </svg>
+              <ShoppingCartIcon className="h-6 w-6" />
             </a>
           </div>
         </div>

@@ -1,11 +1,18 @@
 /** Dependencies
- * "next": "12.1.6",
+ * "next": "12.2.2",
  * "clsx": "^1.1.1",
+ * "@heroicons/react": "^1.0.6",
  */
 
 import Link from "next/link";
 import { useRouter } from "next/router";
 import clsx from "clsx";
+import {
+  CogIcon,
+  LockClosedIcon,
+  TicketIcon,
+  UserIcon,
+} from "@heroicons/react/outline";
 
 const Sidebar: React.FunctionComponent<{
   categories: {
@@ -75,49 +82,13 @@ const categories = [
       {
         name: "Profile",
         path: "#",
-        icon: ({ ...props }) => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            {...props}
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <circle cx="12" cy="12" r="9"></circle>
-            <circle cx="12" cy="10" r="3"></circle>
-            <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
-          </svg>
-        ),
+        icon: UserIcon,
         active: true,
       },
       {
         name: "Privacy",
         path: "#",
-        icon: ({ ...props }) => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            {...props}
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <rect x="5" y="11" width="14" height="10" rx="2"></rect>
-            <circle cx="12" cy="16" r="1"></circle>
-            <path d="M8 11v-4a4 4 0 0 1 8 0v4"></path>
-          </svg>
-        ),
+        icon: LockClosedIcon,
       },
     ],
   },
@@ -127,48 +98,12 @@ const categories = [
       {
         name: "Tickets",
         path: "#",
-        icon: ({ ...props }) => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            {...props}
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <line x1="15" y1="5" x2="15" y2="7"></line>
-            <line x1="15" y1="11" x2="15" y2="13"></line>
-            <line x1="15" y1="17" x2="15" y2="19"></line>
-            <path d="M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-3a2 2 0 0 0 0 -4v-3a2 2 0 0 1 2 -2"></path>
-          </svg>
-        ),
+        icon: TicketIcon,
       },
       {
         name: "Settings",
         path: "#",
-        icon: ({ ...props }) => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            {...props}
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-        ),
+        icon: CogIcon,
       },
     ],
   },

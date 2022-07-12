@@ -9,8 +9,8 @@ const Loader: React.FunctionComponent<{}> = ({}) => {
         "bg-indigo-400",
       ].map((bar, i) => (
         <span
-          key={`bar-${i}`}
-          id="bar"
+          key={`bar-${i + 1}`}
+          id={`bar-${i + 1}`}
           className={`h-10 w-1 origin-center scale-y-[0.1] animate-scaleY ${bar}`}
           style={
             {

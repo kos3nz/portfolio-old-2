@@ -6,6 +6,17 @@ const allTemplates: {
     [slug: string]: ComponentTemplate[];
   };
 } = {
+  events: {
+    mouse: [
+      {
+        fileName: "mouse-move.tsx",
+        title: "Mouse move",
+        Component: dynamic(() => import("./events/mouse/mouse-move")),
+        notCentered: true,
+        containerClassName: "h-[200px]",
+      },
+    ],
+  },
   navigation: {
     breadcrumbs: [
       {
@@ -30,7 +41,7 @@ const allTemplates: {
         title: "Simple",
         Component: dynamic(() => import("./navigation/sidebars/simple")),
         notCentered: true,
-        wrapperClassName: "h-[500px]",
+        containerClassName: "h-[500px]",
       },
     ],
   },
@@ -38,13 +49,18 @@ const allTemplates: {
     animation: [
       {
         fileName: "bounce.tsx",
-        title: "Bounce",
+        title: "Bounce with Framer motion",
         Component: dynamic(() => import("./ui/animation/bounce")),
       },
       {
         fileName: "scale.tsx",
-        title: "Scale",
+        title: "Scale with TailwindCSS",
         Component: dynamic(() => import("./ui/animation/scale")),
+      },
+      {
+        fileName: "playing.tsx",
+        title: "Playing with Web Animations API",
+        Component: dynamic(() => import("./ui/animation/playing")),
       },
     ],
     images: [
