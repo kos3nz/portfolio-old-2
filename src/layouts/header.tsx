@@ -14,7 +14,7 @@ const navigation = {
   projects: { name: "Projects", href: "/projects" },
   components: {
     name: "Components",
-    href: "/components/navigation/breadcrumbs",
+    href: "/components/events/mouse",
   },
   snippets: { name: "Snippets", href: "/snippets" },
 } as const;

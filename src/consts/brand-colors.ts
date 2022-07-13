@@ -1,6 +1,7 @@
 export type BrandColor = keyof typeof brandColors;
 
 export const brandColors = {
+  css: '#2892c6',
   react: '#00d8ff',
   javascript: '#f7df1e',
   typescript: '#3178c6',

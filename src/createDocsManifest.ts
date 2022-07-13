@@ -11,19 +11,16 @@ export const createPostDocsManifest = () => {
   const manifest = fileNames.map((fileName) => {
     const rawContent = getSourceFromFile([`src/data/posts/${fileName}`]);
 
-    return parseContent(
-      rawContent,
-      {
-        fileName,
-        requiredMeta: ['title', 'date'],
-      },
-    );
-  },).sort((a, b) => {
+    return parseContent(rawContent, {
+      fileName,
+      requiredMeta: ['title', 'created'],
+    });
+  }).sort((a, b) => {
     return compareDesc(
-      new Date(a.frontMatter.date),
-      new Date(b.frontMatter.date),
+      new Date(a.frontMatter.created),
+      new Date(b.frontMatter.created),
     );
-  },);
+  });
 
   // Almost the same as writeFileSync, except that if the parent directory does not exist, it's created.
   outputFileSync(

@@ -20,7 +20,7 @@ const Post: NextPage<NextPageProps> = ({
   tableOfContents,
   hashes,
 }) => {
-  const { title, date, tags } = frontMatter;
+  const { title, created, updated, tags } = frontMatter;
   const MDXComponent = useMemo(() => getMDXComponent(code), [code]);
 
   useHeadingRouteUpdates(hashes);
@@ -43,13 +43,15 @@ const Post: NextPage<NextPageProps> = ({
 
                 <p>
                   Posted on
-                  <time dateTime={date} className="ml-1">
-                    {format(parseISO(date), "yyyy /L /d")}
+                  <time dateTime={created} className="ml-1">
+                    {format(parseISO(created), "yyyy/ L/ d")}
                   </time>
                 </p>
               </div>
 
-              <h1 className="text-3xl font-bold text-base-content">{title}</h1>
+              <h1 className="text-[1.685rem] font-bold leading-10 text-base-content md:text-3xl">
+                {title}
+              </h1>
             </div>
 
             {/* Content */}

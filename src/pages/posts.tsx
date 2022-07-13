@@ -15,12 +15,16 @@ const Posts: NextPage<NextPageProps> = ({}) => {
 
         <div className="space-y-4">
           {posts.map(
-            ({ slug, frontMatter: { title, date, summary, tags } }) => (
+            ({
+              slug,
+              frontMatter: { title, created, updated, summary, tags },
+            }) => (
               <PostCard
                 key={slug}
                 slug={slug}
                 title={title}
-                date={date}
+                created={created}
+                updated={updated}
                 summary={summary}
                 tags={tags}
               />

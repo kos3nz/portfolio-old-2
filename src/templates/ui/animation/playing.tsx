@@ -9,27 +9,27 @@ const Playing: React.FunctionComponent<{}> = ({}) => {
     if (bar1 && bar2 && bar3 && bar4 && bar5) {
       bar1.animate(
         [
-          { transform: "scaleY(0.2) translateY(0rem)" },
-          { transform: "scaleY(0.5) translateY(-0.032rem)", offset: 0.3 },
-          { transform: "scaleY(0.5) translateY(-0.032rem)", offset: 0.4 },
-          { transform: "scaleY(0.9) translateY(-0.082rem)", offset: 0.6 },
-          { transform: "scaleY(0.9) translateY(-0.082rem)", offset: 0.8 },
-          { transform: "scaleY(0.3) translateY(0rem)" },
+          { transform: "scaleY(0.2)" },
+          { transform: "scaleY(0.5)", offset: 0.3 },
+          { transform: "scaleY(0.5)", offset: 0.45 },
+          { transform: "scaleY(0.9)", offset: 0.7 },
+          { transform: "scaleY(0.9)", offset: 0.85 },
+          { transform: "scaleY(0.3)" },
         ],
-        { duration: 1300, iterations: Infinity, easing: "ease-in-out" }
+        { duration: 900, iterations: Infinity, easing: "ease-in-out" }
       );
 
       bar2.animate(
         [
-          { transform: "scaleY(0.1) translateY(0rem)" },
-          { transform: "scaleY(0.4) translateY(-0.022rem)", offset: 0.4 },
-          { transform: "scaleY(0.4) translateY(-0.022rem)", offset: 0.5 },
-          { transform: "scaleY(0.7) translateY(-0.062rem)", offset: 0.8 },
-          { transform: "scaleY(0.7) translateY(-0.062rem)", offset: 0.9 },
-          { transform: "scaleY(0.2) translateY(0rem)" },
+          { transform: "scaleY(0.1)" },
+          { transform: "scaleY(0.4)", offset: 0.4 },
+          { transform: "scaleY(0.4)", offset: 0.55 },
+          { transform: "scaleY(0.7)", offset: 0.7 },
+          { transform: "scaleY(0.7)", offset: 0.85 },
+          { transform: "scaleY(0.2)" },
         ],
         {
-          duration: 1000,
+          duration: 850,
           iterations: Infinity,
           easing: "ease-in-out",
           delay: 200,
@@ -38,16 +38,16 @@ const Playing: React.FunctionComponent<{}> = ({}) => {
 
       bar3.animate(
         [
-          { transform: "scaleY(0.1) translateY(0rem)" },
-          { transform: "scaleY(0.6) translateY(-0.022rem)", offset: 0.3 },
-          { transform: "scaleY(0.6) translateY(-0.022rem)", offset: 0.4 },
-          { transform: "scaleY(0.9) translateY(-0.072rem)", offset: 0.6 },
-          { transform: "scaleY(0.9) translateY(-0.072rem)", offset: 0.7 },
-          { transform: "scaleY(0.7) translateY(-0.062rem)", offset: 0.9 },
-          { transform: "scaleY(0.2) translateY(0rem)" },
+          { transform: "scaleY(0.1)" },
+          { transform: "scaleY(0.6)", offset: 0.3 },
+          { transform: "scaleY(0.6)", offset: 0.5 },
+          { transform: "scaleY(0.9)", offset: 0.6 },
+          { transform: "scaleY(0.9)", offset: 0.75 },
+          { transform: "scaleY(0.6)", offset: 0.9 },
+          { transform: "scaleY(0.2)" },
         ],
         {
-          duration: 1300,
+          duration: 950,
           iterations: Infinity,
           easing: "ease-in-out",
           delay: 400,
@@ -56,14 +56,15 @@ const Playing: React.FunctionComponent<{}> = ({}) => {
 
       bar4.animate(
         [
-          { transform: "scaleY(0.2) translateY(0rem)" },
-          { transform: "scaleY(0.5) translateY(-0.022rem)", offset: 0.3 },
-          { transform: "scaleY(0.5) translateY(-0.022rem)", offset: 0.4 },
-          { transform: "scaleY(0.8) translateY(-0.072rem)", offset: 0.8 },
-          { transform: "scaleY(0.3) translateY(-0rem)" },
+          { transform: "scaleY(0.2)" },
+          { transform: "scaleY(0.5)", offset: 0.3 },
+          { transform: "scaleY(0.5)", offset: 0.45 },
+          { transform: "scaleY(0.8)", offset: 0.65 },
+          { transform: "scaleY(0.8)", offset: 0.8 },
+          { transform: "scaleY(0.3))" },
         ],
         {
-          duration: 1000,
+          duration: 800,
           iterations: Infinity,
           easing: "ease-in-out",
           delay: 200,
@@ -72,15 +73,15 @@ const Playing: React.FunctionComponent<{}> = ({}) => {
 
       bar5.animate(
         [
-          { transform: "scaleY(0.2) translateY(0rem)" },
-          { transform: "scaleY(0.7) translateY(-0.022rem)", offset: 0.4 },
-          { transform: "scaleY(0.7) translateY(-0.022rem)", offset: 0.6 },
-          { transform: "scaleY(1.0) translateY(-0.072rem)", offset: 0.8 },
-          { transform: "scaleY(1.0) translateY(-0.072rem)", offset: 0.9 },
-          { transform: "scaleY(0.2) translateY(0rem)" },
+          { transform: "scaleY(0.2)" },
+          { transform: "scaleY(0.7)", offset: 0.4 },
+          { transform: "scaleY(0.7)", offset: 0.55 },
+          { transform: "scaleY(1.0)", offset: 0.7 },
+          { transform: "scaleY(1.0)", offset: 0.85 },
+          { transform: "scaleY(0.2)" },
         ],
         {
-          duration: 1300,
+          duration: 1000,
           iterations: Infinity,
           easing: "ease-in-out",
           delay: 100,

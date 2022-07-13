@@ -8,7 +8,8 @@ import { BrandColor } from "consts/brand-colors";
 const PostCard: React.FunctionComponent<Props> = ({
   slug,
   title,
-  date,
+  created,
+  updated,
   summary,
   tags,
 }) => {
@@ -18,8 +19,8 @@ const PostCard: React.FunctionComponent<Props> = ({
         <div className="flex items-center gap-x-2 text-sm text-base-content/70">
           <dl className="flex gap-x-1">
             <dt className="">Posted on</dt>
-            <time dateTime={date} className="block whitespace-nowrap">
-              {format(parseISO(date), "yyyy/ L/ d")}
+            <time dateTime={created} className="block whitespace-nowrap">
+              {format(parseISO(created), "yyyy/ L/ d")}
             </time>
           </dl>
         </div>
@@ -38,14 +39,14 @@ const PostCard: React.FunctionComponent<Props> = ({
             {title}
           </h3>
           <p
-            className="mt-3 text-sm text-base-content/70 sm:text-base"
+            className="mt-3 text-sm text-base-content/70 sm:text-[15px]"
             style={{ fontFeatureSettings: '"palt"' }}
           >
             {summary}
           </p>
-          <div className="mt-3 flex items-center justify-between pb-1">
+          <div className="mt-6 flex items-center justify-between pb-1">
             <div className="flex items-end gap-x-1 duration-300 lg:group-hover:translate-x-1">
-              <span className="font-semibold text-accent transition-colors duration-300 lg:text-base-content lg:group-hover:text-accent">
+              <span className="font-semibold text-primary transition-colors duration-300 lg:text-base-content lg:group-hover:text-primary">
                 Read more
               </span>
               <svg
@@ -62,17 +63,17 @@ const PostCard: React.FunctionComponent<Props> = ({
                 <polyline
                   id="chevronLeft1"
                   points="7 7 12 12 7 17"
-                  className="-translate-x-[6px] text-accent opacity-0 transition-all duration-500 lg:text-base-content lg:group-hover:translate-x-0 lg:group-hover:text-accent lg:group-hover:opacity-100"
+                  className="-translate-x-[6px] text-primary opacity-0 transition-all duration-500 lg:text-base-content lg:group-hover:translate-x-0 lg:group-hover:text-primary lg:group-hover:opacity-100"
                 ></polyline>
                 <polyline
                   id="chevronLeft2"
                   points="7 7 12 12 7 17"
-                  className="text-accent transition-all duration-500 lg:text-base-content lg:group-hover:translate-x-[6px] lg:group-hover:text-accent"
+                  className="text-primary transition-all duration-500 lg:text-base-content lg:group-hover:translate-x-[6px] lg:group-hover:text-primary"
                 ></polyline>
                 <polyline
                   id="chevronRight1"
                   points="13 7 18 12 13 17"
-                  className="text-accent transition-all duration-500 lg:text-base-content lg:group-hover:translate-x-4 lg:group-hover:opacity-0"
+                  className="text-primary transition-all duration-500 lg:text-base-content lg:group-hover:translate-x-4 lg:group-hover:opacity-0"
                 ></polyline>
               </svg>
             </div>
@@ -90,7 +91,8 @@ export default PostCard;
 export type Props = {
   slug: string;
   title: string;
-  date: string;
+  created: string;
+  updated?: string;
   summary: string;
   tags?: string[];
 };

@@ -7,7 +7,7 @@ const Tag: React.FunctionComponent<{
 }> = ({ text, color, brand }) => {
   return (
     <div
-      className="rounded-full text-sm font-bold capitalize text-base-content/70"
+      className="rounded-full text-sm font-bold lowercase text-base-content/70"
       style={{
         color: brand ? brandColors[brand.toLowerCase() as BrandColor] : color,
       }}

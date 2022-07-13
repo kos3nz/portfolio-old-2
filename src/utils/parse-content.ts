@@ -18,13 +18,13 @@ export const parseContent = (
       }
 
       return;
-    },);
+    });
   }
 
   const plainText = stripMarkdown(content);
   const slug = slugger.slug(data.title);
 
-  const regExpForHeadings = /(#{1,}) ([ -\w\(\)\.]*)/g;
+  const regExpForHeadings = /(#{1,}) ([ -\w\(\)\.(ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠)]*)/g;
   const iterable = content.matchAll(regExpForHeadings);
   const tableOfContents = [...iterable].map((heading) => {
     const [_, level, text] = heading;
@@ -35,10 +35,11 @@ export const parseContent = (
       text,
       hash,
     };
-  },);
+  });
   const hashes = tableOfContents.map((heading) => heading.hash);
 
-  data.date = validateDateString(data.date);
+  data.created = validateDateString(data.created);
+  data.updated = data.updated ? validateDateString(data.updated) : '';
   data.summary = data.summary || (plainText.substring(0, 120) + '...');
   data.tags = data.tags || [];
 

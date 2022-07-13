@@ -4,7 +4,7 @@ const CopyToClipboard: React.FunctionComponent<{
   copied: boolean;
   onCopy: () => void;
   className?: string;
-}> = ({ copied, onCopy, className = "button-icon" }) => {
+}> = ({ copied, onCopy, className = "btn-icon" }) => {
   return (
     <button
       className={className}
